@@ -1,5 +1,5 @@
 image:
-  repository: weaveworks/kured
+  repository: ghcr.io/kubereboot/kured
   tag: ""  # will default to the appVersion in Chart.yaml
   pullPolicy: IfNotPresent
   pullSecrets: []
