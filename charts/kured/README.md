@@ -125,6 +125,7 @@ The following changes have been made compared to the stable chart:
 | `priorityClassName`     | Priority Class to be used by the pods                                                       | `""`                      |
 | `tolerations`           | Tolerations to apply to the daemonset (eg to allow running on master)                       | `[{"key": "node-role.kubernetes.io/control-plane", "effect": "NoSchedule"}]` for Kubernetes 1.24.0 and greater, otherwise `[{"key": "node-role.kubernetes.io/master", "effect": "NoSchedule"}]`|
 | `affinity`              | Affinity for the daemonset (ie, restrict which nodes kured runs on)                         | `{}`                      |
+| `hostNetwork`           | Pod uses the host network instead of the cluster network                                    | `true`                    |
 | `nodeSelector`          | Node Selector for the daemonset (ie, restrict which nodes kured runs on)                    | `{}`                      |
 | `volumeMounts`          | Maps of volumes mount to mount                                                              | `{}`                      |
 | `volumes`               | Maps of volumes to mount                                                                    | `{}`                      |

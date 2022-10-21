@@ -73,6 +73,8 @@ containerSecurityContext:
 
 resources: {}
 
+hostNetwork: true
+
 metrics:
   create: false
   namespace: ""
