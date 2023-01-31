@@ -129,6 +129,7 @@ The following changes have been made compared to the stable chart:
 | `nodeSelector`          | Node Selector for the daemonset (ie, restrict which nodes kured runs on)                    | `{}`                      |
 | `volumeMounts`          | Maps of volumes mount to mount                                                              | `{}`                      |
 | `volumes`               | Maps of volumes to mount                                                                    | `{}`                      |
+| `initContainers`        | Define initContainers for DaemonSet                                                         | `{}`                      |
 See https://github.com/kubereboot/kured#configuration for values (not contained in the `configuration` object) for `extraArgs`. Note that
 ```yaml
 extraArgs:
