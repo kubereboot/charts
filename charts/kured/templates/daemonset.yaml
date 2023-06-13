@@ -185,6 +185,12 @@ spec:
             {{- if .Values.extraEnvVars }}
               {{ toYaml .Values.extraEnvVars | nindent 12 }}
             {{- end }}
+          {{- with .Values.livenessProbe }}
+          livenessProbe: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
+          readinessProbe: {{- toYaml . | nindent 12 }}
+          {{- end }}
       tolerations:
       {{- if .Values.tolerations }}
           {{- with .Values.tolerations }}

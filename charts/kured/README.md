@@ -121,6 +121,8 @@ The following changes have been made compared to the stable chart:
 | `service.name  `        | Service name for the metrics endpoint                                                       | `""`                      |
 | `service.port`          | Port of the service to expose                                                               | `8080`                    |
 | `service.annotations`   | Annotations to apply to the service (eg to add Prometheus annotations)                      | `{}`                      |
+| `livenessProbe`         | Liveness probe for pods                                                                     | `{"httpGet":{"path":"/metrics","port":"metrics","scheme":"HTTP"},"initialDelaySeconds":10,"periodSeconds":30,"timeoutSeconds":5,"successThreshold":1,"failureThreshold":5}`                      |
+| `readinessProbe`        | Readiness probe for pods                                                                    | `{"httpGet":{"path":"/metrics","port":"metrics","scheme":"HTTP"},"initialDelaySeconds":10,"periodSeconds":30,"timeoutSeconds":5,"successThreshold":1,"failureThreshold":5}`                      |
 | `podLabels`             | Additional labels for pods (e.g. CostCenter=IT)                                             | `{}`                      |
 | `priorityClassName`     | Priority Class to be used by the pods                                                       | `""`                      |
 | `tolerations`           | Tolerations to apply to the daemonset (eg to allow running on master)                       | `[{"key": "node-role.kubernetes.io/control-plane", "effect": "NoSchedule"}]` for Kubernetes 1.24.0 and greater, otherwise `[{"key": "node-role.kubernetes.io/master", "effect": "NoSchedule"}]`|
@@ -137,7 +139,6 @@ extraArgs:
   bar-baz: 2
 ```
 becomes `/usr/bin/kured ... --foo=1 --bar-baz=2`.
-
 
 ## Prometheus Metrics
 

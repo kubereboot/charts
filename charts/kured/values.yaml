@@ -89,6 +89,28 @@ service:
   name: ""
   type: ClusterIP
 
+livenessProbe:
+  httpGet:
+    path: /metrics
+    port: metrics
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
+
+readinessProbe:
+  httpGet:
+    path: /metrics
+    port: metrics
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
+
 podLabels: {}
 
 priorityClassName: ""
