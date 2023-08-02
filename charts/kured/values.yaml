@@ -70,11 +70,12 @@ podSecurityPolicy:
 
 containerSecurityContext:
   privileged: true  # Give permission to nsenter /proc/1/ns/mnt
+  readOnlyRootFilesystem: true
 #  allowPrivilegeEscalation: true # Needed when using defaultAllowPrivilegedEscalation: false in psp
 
 resources: {}
 
-hostNetwork: true
+hostNetwork: false
 
 metrics:
   create: false
