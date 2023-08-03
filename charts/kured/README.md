@@ -74,6 +74,7 @@ The following changes have been made compared to the stable chart:
 | `image.tag`                             | Image tag                                                                   | `1.13.2`                  |
 | `image.pullPolicy`                      | Image pull policy                                                           | `IfNotPresent`            |
 | `image.pullSecrets`                     | Image pull secrets                                                          | `[]`                      |
+| `revisionHistoryLimit`                  | Number of old history to retain to allow rollback                           | `10`                      |
 | `updateStrategy`                        | Daemonset update strategy                                                   | `RollingUpdate`           |
 | `maxUnavailable`                        | The max pods unavailable during a rolling update                            | `1`                       |
 | `podAnnotations`                        | Annotations to apply to pods (eg to add Prometheus annotations)             | `{}`                      |

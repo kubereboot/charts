@@ -4,6 +4,8 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+revisionHistoryLimit: 10
+
 updateStrategy: RollingUpdate
 #  requires RollingUpdate updateStrategy
 maxUnavailable: 1
