@@ -4,6 +4,8 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+# revisionHistoryLimit: 1  # number of old history to retain to allow rollback (Kubernetes default 10)
+
 updateStrategy: RollingUpdate
 #  requires RollingUpdate updateStrategy
 maxUnavailable: 1
