@@ -12,9 +12,7 @@ metadata:
   {{- end }}
   {{- end }}
 spec:
-{{- if .Values.revisionHistoryLimit }}
   revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
-{{- end }}
   updateStrategy:
     type: {{ .Values.updateStrategy }}
 {{- if eq .Values.updateStrategy "RollingUpdate"}}
