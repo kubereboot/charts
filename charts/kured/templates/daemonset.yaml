@@ -187,10 +187,17 @@ spec:
             - --{{ $key }}
             {{- end }}
           {{- end }}
-{{- if .Values.volumeMounts }}
+        {{- if or .Values.volumeMounts (not .Values.configuration.rebootSentinelCommand) }}
           volumeMounts:
+        {{- end }}
+        {{- if not .Values.configuration.rebootSentinelCommand }}
+            - mountPath: /var/run
+              name: sentinel
+              readOnly: true
+        {{- end }}
+        {{- if .Values.volumeMounts }}
 {{- toYaml .Values.volumeMounts  | nindent 12 }}
-{{- end }}
+        {{- end }}
           ports:
             - containerPort: {{ .Values.configuration.metricsPort }}
               name: metrics
@@ -229,7 +236,14 @@ spec:
       affinity:
 {{ toYaml . | indent 8 }}
       {{- end }}
-{{- if .Values.volumes }}
+    {{- if or .Values.volumes (not .Values.configuration.rebootSentinelCommand) }}
       volumes:
+    {{- end }}
+    {{- if not .Values.configuration.rebootSentinelCommand }}
+        - name: sentinel
+          hostPath:
+            path: /var/run
+    {{- end }}
+    {{- if .Values.volumes }}
 {{- toYaml .Values.volumes  | nindent 8 }}
-{{- end }}
+    {{- end }}
