@@ -119,11 +119,11 @@ spec:
           {{- end }}
           {{- if .Values.configuration.rebootSentinel }}
             - --reboot-sentinel={{ .Values.configuration.rebootSentinel }}
+          {{- else if not .Values.configuration.rebootSentinelCommand }}
+            - --reboot-sentinel=/sentinel/reboot-required
           {{- end }}
           {{- if .Values.configuration.rebootSentinelCommand }}
             - --reboot-sentinel-command={{ .Values.configuration.rebootSentinelCommand }}
-          {{- else }}
-            - --reboot-sentinel-command=/sentinel/reboot-required
           {{- end }}
           {{- if .Values.configuration.rebootCommand }}
             - --reboot-command={{ .Values.configuration.rebootCommand }}
