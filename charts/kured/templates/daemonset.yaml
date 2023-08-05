@@ -122,6 +122,8 @@ spec:
           {{- end }}
           {{- if .Values.configuration.rebootSentinelCommand }}
             - --reboot-sentinel-command={{ .Values.configuration.rebootSentinelCommand }}
+          {{- else }}
+            - --reboot-sentinel-command=/sentinel/reboot-required
           {{- end }}
           {{- if .Values.configuration.rebootCommand }}
             - --reboot-command={{ .Values.configuration.rebootCommand }}
@@ -176,11 +178,9 @@ spec:
           volumeMounts:
         {{- end }}
         {{- if not .Values.configuration.rebootSentinelCommand }}
-            - mountPath: /var/run
+            - mountPath: /sentinel
               name: sentinel
-              # This can't be read-only because the service-account-token is mounted within the same directory
-              # This would cause a crash at startup
-              readOnly: false
+              readOnly: true
         {{- end }}
         {{- if .Values.volumeMounts }}
 {{- toYaml .Values.volumeMounts  | nindent 12 }}
