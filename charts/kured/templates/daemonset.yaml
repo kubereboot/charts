@@ -66,6 +66,9 @@ spec:
           args:
             - --ds-name={{ template "kured.fullname" . }}
             - --ds-namespace={{ .Release.Namespace }}
+          {{- if .Values.configuration.metricsHost }}
+            - --metrics-host={{ .Values.configuration.metricsHost }}
+          {{- end }}
           {{- if .Values.configuration.metricsPort }}
             - --metrics-port={{ .Values.configuration.metricsPort }}
           {{- end }}
