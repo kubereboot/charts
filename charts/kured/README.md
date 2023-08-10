@@ -83,6 +83,7 @@ The following changes have been made compared to the stable chart:
 | `extraEnvVars`                          | Array of environment variables to pass to the daemonset.                    | `{}`                      |
 | `metricsHost`                           | Host to expose the metrics endpoint.                                        | `""`                      |
 | `metricsPort`                           | Port to expose the metrics endpoint.                                        | `8080`                    |
+| `configuration.useRebootSentinelHostPath` | Not actually a flag, indicates if the sentinel should be mounted          | `true`                    |
 | `configuration.lockTtl`                 | cli-parameter `--lock-ttl`                                                  | `0`                       |
 | `configuration.lockReleaseDelay`        | cli-parameter `--lock-release-delay`                                        | `0`                       |
 | `configuration.alertFilterRegexp`       | cli-parameter `--alert-filter-regexp`                                       | `""`                      |
