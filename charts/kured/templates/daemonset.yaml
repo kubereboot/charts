@@ -118,11 +118,13 @@ spec:
             - --post-reboot-node-labels={{ . }}
           {{- end }}
           {{- if .Values.configuration.rebootSentinel }}
+            {{- if .Values.configuration.useRebootSentinelHostPath }}
+            - --reboot-sentinel=/sentinel/{{ base .Values.configuration.rebootSentinel }}
+            {{ else }}
             - --reboot-sentinel={{ .Values.configuration.rebootSentinel }}
-          {{- else if not .Values.configuration.rebootSentinelCommand }}
-            - --reboot-sentinel=/sentinel/reboot-required
+            {{- end }}
           {{- end }}
-          {{- if .Values.configuration.rebootSentinelCommand }}
+          {{- if and .Values.configuration.rebootSentinelCommand (not .Values.configuration.useRebootSentinelHostPath) }}
             - --reboot-sentinel-command={{ .Values.configuration.rebootSentinelCommand }}
           {{- end }}
           {{- if .Values.configuration.rebootCommand }}
@@ -174,13 +176,13 @@ spec:
             - --{{ $key }}
             {{- end }}
           {{- end }}
-        {{- if or .Values.volumeMounts (not .Values.configuration.rebootSentinelCommand) }}
+        {{- if or .Values.volumeMounts .Values.configuration.useRebootSentinelHostPath }}
           volumeMounts:
         {{- end }}
-        {{- if not .Values.configuration.rebootSentinelCommand }}
-            - mountPath: /sentinel
-              name: sentinel
-              readOnly: true
+        {{- if .Values.configuration.useRebootSentinelHostPath }}
+          - mountPath: /sentinel
+            name: sentinel
+            readOnly: true
         {{- end }}
         {{- if .Values.volumeMounts }}
 {{- toYaml .Values.volumeMounts  | nindent 12 }}
@@ -223,13 +225,13 @@ spec:
       affinity:
 {{ toYaml . | indent 8 }}
       {{- end }}
-    {{- if or .Values.volumes (not .Values.configuration.rebootSentinelCommand) }}
+    {{- if or .Values.volumes .Values.configuration.useRebootSentinelHostPath }}
       volumes:
     {{- end }}
-    {{- if not .Values.configuration.rebootSentinelCommand }}
+    {{- if .Values.configuration.useRebootSentinelHostPath }}
         - name: sentinel
           hostPath:
-            path: /var/run
+            path: {{ dir .Values.configuration.rebootSentinel }}
     {{- end }}
     {{- if .Values.volumes }}
 {{- toYaml .Values.volumes  | nindent 8 }}
