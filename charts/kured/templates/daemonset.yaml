@@ -118,13 +118,13 @@ spec:
             - --post-reboot-node-labels={{ . }}
           {{- end }}
           {{- if .Values.configuration.rebootSentinel }}
-            {{- if .Values.configuration.useRebootSentinelHostPath }}
+            {{- if .Values.useRebootSentinelHostPath }}
             - --reboot-sentinel=/sentinel/{{ base .Values.configuration.rebootSentinel }}
             {{ else }}
             - --reboot-sentinel={{ .Values.configuration.rebootSentinel }}
             {{- end }}
           {{- end }}
-          {{- if and .Values.configuration.rebootSentinelCommand (not .Values.configuration.useRebootSentinelHostPath) }}
+          {{- if and .Values.configuration.rebootSentinelCommand (not .Values.useRebootSentinelHostPath) }}
             - --reboot-sentinel-command={{ .Values.configuration.rebootSentinelCommand }}
           {{- end }}
           {{- if .Values.configuration.rebootCommand }}
@@ -176,10 +176,10 @@ spec:
             - --{{ $key }}
             {{- end }}
           {{- end }}
-        {{- if or .Values.volumeMounts .Values.configuration.useRebootSentinelHostPath }}
+        {{- if or .Values.volumeMounts .Values.useRebootSentinelHostPath }}
           volumeMounts:
         {{- end }}
-        {{- if .Values.configuration.useRebootSentinelHostPath }}
+        {{- if .Values.useRebootSentinelHostPath }}
           - mountPath: /sentinel
             name: sentinel
             readOnly: true
@@ -225,13 +225,14 @@ spec:
       affinity:
 {{ toYaml . | indent 8 }}
       {{- end }}
-    {{- if or .Values.volumes .Values.configuration.useRebootSentinelHostPath }}
+    {{- if or .Values.volumes .Values.useRebootSentinelHostPath }}
       volumes:
     {{- end }}
-    {{- if .Values.configuration.useRebootSentinelHostPath }}
+    {{- if .Values.useRebootSentinelHostPath }}
         - name: sentinel
           hostPath:
             path: {{ dir .Values.configuration.rebootSentinel }}
+            type: Directory
     {{- end }}
     {{- if .Values.volumes }}
 {{- toYaml .Values.volumes  | nindent 8 }}
