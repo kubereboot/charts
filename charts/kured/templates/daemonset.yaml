@@ -145,6 +145,12 @@ spec:
           {{- if .Values.configuration.rebootDelay }}
             - --reboot-delay={{ .Values.configuration.rebootDelay }}
           {{- end }}
+          {{- if .Values.configuration.rebootMethod }}
+            - --reboot-method={{ .Values.configuration.rebootMethod }}
+          {{- end }}
+          {{- if .Values.configuration.rebootSignal }}
+            - --reboot-signal={{ .Values.configuration.rebootSignal }}
+          {{- end }}
           {{- if .Values.configuration.slackChannel }}
             - --slack-channel={{ tpl .Values.configuration.slackChannel . }}
           {{- end }}

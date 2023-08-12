@@ -105,6 +105,8 @@ The following changes have been made compared to the stable chart:
 | `configuration.rebootSentinelCommand`   | cli-parameter `--reboot-sentinel-command`                                   | `""`                      |
 | `configuration.rebootCommand`           | cli-parameter `--reboot-command`                                            | `""`                      |
 | `configuration.rebootDelay`             | cli-parameter `--reboot-delay`                                              | `""`                      |
+| `configuration.rebootMethod`            | cli-parameter `--reboot-method`                                             | `""`                      |
+| `configuration.rebootSignal`            | cli-parameter `--reboot-signal`                                             | `39`  (SIGRTMIN+5)        |
 | `configuration.slackChannel`            | cli-parameter `--slack-channel`. Passed through `tpl`                       | `""`                      |
 | `configuration.slackHookUrl`            | cli-parameter `--slack-hook-url`. Passed through `tpl`                      | `""`                      |
 | `configuration.slackUsername`           | cli-parameter `--slack-username`. Passed through `tpl`                      | `""`                      |
