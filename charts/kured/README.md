@@ -23,6 +23,13 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Upgrade Notes
 
+### From 4.x to 5.x
+
+We improved two security-related default-values:
+- `hostNetwork` is set to `false` by default now.
+- `readOnlyRootFilesystem` is set to `true` by default now.
+Both parameters can be configured to its old values from 4.x
+
 ### From 3.x to 4.x
 
 We have migrated the code and its release artifacts (helm charts, docker images, manifests) to an
@@ -64,15 +71,17 @@ The following changes have been made compared to the stable chart:
 | Config                                  | Description                                                                 | Default                   |
 | ------                                  | -----------                                                                 | -------                   |
 | `image.repository`                      | Image repository                                                            | `ghcr.io/kubereboot/kured`|
-| `image.tag`                             | Image tag                                                                   | `1.13.1`                  |
+| `image.tag`                             | Image tag                                                                   | `1.13.2`                  |
 | `image.pullPolicy`                      | Image pull policy                                                           | `IfNotPresent`            |
 | `image.pullSecrets`                     | Image pull secrets                                                          | `[]`                      |
+| `revisionHistoryLimit`                  | Number of old history to retain to allow rollback                           | `10`                      |
 | `updateStrategy`                        | Daemonset update strategy                                                   | `RollingUpdate`           |
 | `maxUnavailable`                        | The max pods unavailable during a rolling update                            | `1`                       |
 | `podAnnotations`                        | Annotations to apply to pods (eg to add Prometheus annotations)             | `{}`                      |
 | `dsAnnotations`                         | Annotations to apply to the kured DaemonSet                                 | `{}`                      |
 | `extraArgs`                             | Extra arguments to pass to `/usr/bin/kured`. See below.                     | `{}`                      |
 | `extraEnvVars`                          | Array of environment variables to pass to the daemonset.                    | `{}`                      |
+| `metricsPort`                           | Port to expose the metrics endpoint.                                        | `8080`                    |
 | `configuration.lockTtl`                 | cli-parameter `--lock-ttl`                                                  | `0`                       |
 | `configuration.lockReleaseDelay`        | cli-parameter `--lock-release-delay`                                        | `0`                       |
 | `configuration.alertFilterRegexp`       | cli-parameter `--alert-filter-regexp`                                       | `""`                      |
@@ -111,7 +120,7 @@ The following changes have been made compared to the stable chart:
 | `serviceAccount.name`                   | Service account name to create (or use if `serviceAccount.create` is false) | (chart fullname)          |
 | `podSecurityPolicy.create`              | Create podSecurityPolicy                                                    | `false`                   |
 | `containerSecurityContext.privileged `  | Enables `privileged` in container-specific security context                 | `true`                    |
-| `containerSecurityContext.allowPrivilegeEscalation`| Enables `allowPrivilegeEscalation` in container-specific security context. If not set it won't be configured. |  |
+| `containerSecurityContext.readOnlyRootFilesystem`| Enables `readOnlyRootFilesystem` in container-specific security context. If not set it won't be configured. | `true`  |
 | `resources`             | Resources requests and limits.                                                              | `{}`                      |
 | `metrics.create`        | Create a ServiceMonitor for prometheus-operator                                             | `false`                   |
 | `metrics.namespace`     | The namespace to create the ServiceMonitor in                                               | `""`                      |
@@ -128,7 +137,7 @@ The following changes have been made compared to the stable chart:
 | `priorityClassName`     | Priority Class to be used by the pods                                                       | `""`                      |
 | `tolerations`           | Tolerations to apply to the daemonset (eg to allow running on master)                       | `[{"key": "node-role.kubernetes.io/control-plane", "effect": "NoSchedule"}]` for Kubernetes 1.24.0 and greater, otherwise `[{"key": "node-role.kubernetes.io/master", "effect": "NoSchedule"}]`|
 | `affinity`              | Affinity for the daemonset (ie, restrict which nodes kured runs on)                         | `{}`                      |
-| `hostNetwork`           | Pod uses the host network instead of the cluster network                                    | `true`                    |
+| `hostNetwork`           | Pod uses the host network instead of the cluster network                                    | `false`                   |
 | `nodeSelector`          | Node Selector for the daemonset (ie, restrict which nodes kured runs on)                    | `{ "kubernetes.io/os": "linux" }` |
 | `volumeMounts`          | Maps of volumes mount to mount                                                              | `{}`                      |
 | `volumes`               | Maps of volumes to mount                                                                    | `{}`                      |

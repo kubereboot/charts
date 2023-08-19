@@ -4,6 +4,8 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+revisionHistoryLimit: 10
+
 updateStrategy: RollingUpdate
 #  requires RollingUpdate updateStrategy
 maxUnavailable: 1
@@ -23,6 +25,7 @@ extraEnvVars:
 #    value: 123
 
 configuration:
+  metricsPort: 8080             # port number where metrics will listen
   lockTtl: 0                    # force clean annotation after this amount of time (default 0, disabled)
   alertFilterRegexp: ""         # alert names to ignore when checking for active alerts
   alertFiringOnly: false        # only consider firing alerts when checking for active alerts
@@ -70,11 +73,12 @@ podSecurityPolicy:
 
 containerSecurityContext:
   privileged: true  # Give permission to nsenter /proc/1/ns/mnt
+  readOnlyRootFilesystem: true
 #  allowPrivilegeEscalation: true # Needed when using defaultAllowPrivilegedEscalation: false in psp
 
 resources: {}
 
-hostNetwork: true
+hostNetwork: false
 
 metrics:
   create: false
