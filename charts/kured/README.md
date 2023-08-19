@@ -81,6 +81,7 @@ The following changes have been made compared to the stable chart:
 | `dsAnnotations`                         | Annotations to apply to the kured DaemonSet                                 | `{}`                      |
 | `extraArgs`                             | Extra arguments to pass to `/usr/bin/kured`. See below.                     | `{}`                      |
 | `extraEnvVars`                          | Array of environment variables to pass to the daemonset.                    | `{}`                      |
+| `metricsHost`                           | Host to expose the metrics endpoint.                                        | `""`                      |
 | `metricsPort`                           | Port to expose the metrics endpoint.                                        | `8080`                    |
 | `configuration.lockTtl`                 | cli-parameter `--lock-ttl`                                                  | `0`                       |
 | `configuration.lockReleaseDelay`        | cli-parameter `--lock-release-delay`                                        | `0`                       |

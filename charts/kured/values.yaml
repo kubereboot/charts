@@ -25,6 +25,7 @@ extraEnvVars:
 #    value: 123
 
 configuration:
+  metricsHost: ""               # host where metrics will listen
   metricsPort: 8080             # port number where metrics will listen
   lockTtl: 0                    # force clean annotation after this amount of time (default 0, disabled)
   alertFilterRegexp: ""         # alert names to ignore when checking for active alerts
