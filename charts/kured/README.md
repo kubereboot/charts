@@ -71,7 +71,7 @@ The following changes have been made compared to the stable chart:
 | Config                                  | Description                                                                 | Default                   |
 | ------                                  | -----------                                                                 | -------                   |
 | `image.repository`                      | Image repository                                                            | `ghcr.io/kubereboot/kured`|
-| `image.tag`                             | Image tag                                                                   | `1.13.2`                  |
+| `image.tag`                             | Image tag                                                                   | `1.14.0`                  |
 | `image.pullPolicy`                      | Image pull policy                                                           | `IfNotPresent`            |
 | `image.pullSecrets`                     | Image pull secrets                                                          | `[]`                      |
 | `revisionHistoryLimit`                  | Number of old history to retain to allow rollback                           | `10`                      |
@@ -87,6 +87,7 @@ The following changes have been made compared to the stable chart:
 | `configuration.lockReleaseDelay`        | cli-parameter `--lock-release-delay`                                        | `0`                       |
 | `configuration.alertFilterRegexp`       | cli-parameter `--alert-filter-regexp`                                       | `""`                      |
 | `configuration.alertFiringOnly`         | cli-parameter `--alert-firing-only`                                         | `false`                   |
+| `configuration.alertFilterMatchOnly`    | cli-parameter `--alert-filter-match-only`                                   | `false`                   |
 | `configuration.blockingPodSelector`     | Array of selectors for multiple cli-parameters `--blocking-pod-selector`    | `[]`                      |
 | `configuration.endTime`                 | cli-parameter `--end-time`                                                  | `""`                      |
 | `configuration.lockAnnotation`          | cli-parameter `--lock-annotation`                                           | `""`                      |
@@ -116,6 +117,7 @@ The following changes have been made compared to the stable chart:
 | `configuration.preferNoScheduleTaint`   | Taint name applied during pending node reboot                               | `""`                      |
 | `configuration.preRebootNodeLabels`     | Array of key-value-pairs to add to nodes before cordoning for multiple cli-parameters `--pre-reboot-node-labels`   | `[]` |
 | `configuration.postRebootNodeLabels`    | Array of key-value-pairs to add to nodes after uncordoning for multiple cli-parameters `--post-reboot-node-labels` | `[]` |
+| `configuration.concurrency`             | cli-parameter `--concurrency`                                               | `1`                      |
 | `rbac.create`                           | Create RBAC roles                                                           | `true`                    |
 | `serviceAccount.create`                 | Create a service account                                                    | `true`                    |
 | `serviceAccount.name`                   | Service account name to create (or use if `serviceAccount.create` is false) | (chart fullname)          |

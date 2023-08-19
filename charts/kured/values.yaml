@@ -30,6 +30,7 @@ configuration:
   lockTtl: 0                    # force clean annotation after this amount of time (default 0, disabled)
   alertFilterRegexp: ""         # alert names to ignore when checking for active alerts
   alertFiringOnly: false        # only consider firing alerts when checking for active alerts
+  alertFilterMatchOnly: false   # Only block if the alert-filter-regexp matches active alerts
   blockingPodSelector: []       # label selector identifying pods whose presence should prevent reboots
   endTime: ""                   # only reboot before this time of day (default "23:59")
   lockAnnotation: ""            # annotation in which to record locking node (default "weave.works/kured-node-lock")
@@ -60,6 +61,7 @@ configuration:
   logFormat: "text"             # log format specified as text or json, defaults to text
   preRebootNodeLabels: []       # labels to add to nodes before cordoning (default [])
   postRebootNodeLabels: []      # labels to add to nodes after uncordoning (default [])
+  concurrency: 1                # amount of nodes to concurrently reboot. (default 1)
 
 
 rbac:

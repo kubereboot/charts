@@ -84,6 +84,9 @@ spec:
           {{- if .Values.configuration.alertFiringOnly }}
             - --alert-firing-only={{ .Values.configuration.alertFiringOnly }}
           {{- end }}
+          {{- if .Values.configuration.alertFilterMatchOnly }}
+            - --alert-filter-match-only={{ .Values.configuration.alertFilterMatchOnly }}
+          {{- end }}
           {{- range .Values.configuration.blockingPodSelector }}
             - --blocking-pod-selector={{ . }}
           {{- end }}
@@ -170,6 +173,9 @@ spec:
           {{- end }}
           {{- if .Values.configuration.logFormat }}
             - --log-format={{ .Values.configuration.logFormat }}
+          {{- end }}
+          {{- if .Values.configuration.concurrency }}
+            - --concurrency={{ .Values.configuration.concurrency }}
           {{- end }}
           {{- range $key, $value := .Values.extraArgs }}
             {{- if $value }}
