@@ -93,6 +93,7 @@ The following changes have been made compared to the stable chart:
 | `configuration.lockAnnotation`          | cli-parameter `--lock-annotation`                                           | `""`                      |
 | `configuration.period`                  | cli-parameter `--period`                                                    | `""`                      |
 | `configuration.forceReboot`             | cli-parameter `--force-reboot`                                              | `false`                   |
+| `configuration.drainDelay`              | cli-parameter `--drain-delay`                                               | `0`                       |
 | `configuration.drainGracePeriod`        | cli-parameter `--drain-grace-period`                                        | `""`                      |
 | `configuration.drainTimeout`            | cli-parameter `--drain-timeout`                                             | `""`                      |
 | `configuration.drainPodSelector`        | cli-parameter `--drain-pod-selector`                                        | `""`                      |

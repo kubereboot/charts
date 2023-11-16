@@ -108,6 +108,9 @@ spec:
           {{- if .Values.configuration.drainPodSelector }}
             - --drain-pod-selector={{ .Values.configuration.drainPodSelector }}
           {{- end }}
+          {{- if .Values.configuration.drainDelay }}
+            - --drain-delay={{ .Values.configuration.drainDelay }}
+          {{- end }}
           {{- if .Values.configuration.drainTimeout }}
             - --drain-timeout={{ .Values.configuration.drainTimeout }}
           {{- end }}
