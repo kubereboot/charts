@@ -38,7 +38,7 @@ spec:
     spec:
       serviceAccountName: {{ template "kured.serviceAccountName" . }}
       hostNetwork: {{ .Values.hostNetwork }}
-      hostPID: true
+      hostPID: {{ .Values.hostPID }}
       restartPolicy: Always
       {{- with .Values.image.pullSecrets }}
       imagePullSecrets:
