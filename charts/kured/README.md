@@ -71,7 +71,7 @@ The following changes have been made compared to the stable chart:
 | Config                                  | Description                                                                 | Default                   |
 | ------                                  | -----------                                                                 | -------                   |
 | `image.repository`                      | Image repository                                                            | `ghcr.io/kubereboot/kured`|
-| `image.tag`                             | Image tag                                                                   | `1.14.2`                  |
+| `image.tag`                             | Image tag                                                                   | `1.15.0`                  |
 | `image.pullPolicy`                      | Image pull policy                                                           | `IfNotPresent`            |
 | `image.pullSecrets`                     | Image pull secrets                                                          | `[]`                      |
 | `revisionHistoryLimit`                  | Number of old history to retain to allow rollback                           | `10`                      |
@@ -83,6 +83,7 @@ The following changes have been made compared to the stable chart:
 | `extraEnvVars`                          | Array of environment variables to pass to the daemonset.                    | `{}`                      |
 | `metricsHost`                           | Host to expose the metrics endpoint.                                        | `""`                      |
 | `metricsPort`                           | Port to expose the metrics endpoint.                                        | `8080`                    |
+| `useRebootSentinelHostPath`             | Controls whether the chart uses a hostPath to read the sentinel file.       | `true`                    |
 | `configuration.lockTtl`                 | cli-parameter `--lock-ttl`                                                  | `0`                       |
 | `configuration.lockReleaseDelay`        | cli-parameter `--lock-release-delay`                                        | `0`                       |
 | `configuration.alertFilterRegexp`       | cli-parameter `--alert-filter-regexp`                                       | `""`                      |
@@ -104,6 +105,8 @@ The following changes have been made compared to the stable chart:
 | `configuration.rebootSentinelCommand`   | cli-parameter `--reboot-sentinel-command`                                   | `""`                      |
 | `configuration.rebootCommand`           | cli-parameter `--reboot-command`                                            | `""`                      |
 | `configuration.rebootDelay`             | cli-parameter `--reboot-delay`                                              | `""`                      |
+| `configuration.rebootMethod`            | cli-parameter `--reboot-method`                                             | `""`                      |
+| `configuration.rebootSignal`            | cli-parameter `--reboot-signal`                                             | `39`  (SIGRTMIN+5)        |
 | `configuration.slackChannel`            | cli-parameter `--slack-channel`. Passed through `tpl`                       | `""`                      |
 | `configuration.slackHookUrl`            | cli-parameter `--slack-hook-url`. Passed through `tpl`                      | `""`                      |
 | `configuration.slackUsername`           | cli-parameter `--slack-username`. Passed through `tpl`                      | `""`                      |

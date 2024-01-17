@@ -130,9 +130,13 @@ spec:
             - --post-reboot-node-labels={{ . }}
           {{- end }}
           {{- if .Values.configuration.rebootSentinel }}
+            {{- if .Values.useRebootSentinelHostPath }}
+            - --reboot-sentinel=/sentinel/{{ base .Values.configuration.rebootSentinel }}
+            {{ else }}
             - --reboot-sentinel={{ .Values.configuration.rebootSentinel }}
+            {{- end }}
           {{- end }}
-          {{- if .Values.configuration.rebootSentinelCommand }}
+          {{- if and .Values.configuration.rebootSentinelCommand (not .Values.useRebootSentinelHostPath) }}
             - --reboot-sentinel-command={{ .Values.configuration.rebootSentinelCommand }}
           {{- end }}
           {{- if .Values.configuration.rebootCommand }}
@@ -140,6 +144,12 @@ spec:
           {{- end }}
           {{- if .Values.configuration.rebootDelay }}
             - --reboot-delay={{ .Values.configuration.rebootDelay }}
+          {{- end }}
+          {{- if .Values.configuration.rebootMethod }}
+            - --reboot-method={{ .Values.configuration.rebootMethod }}
+          {{- end }}
+          {{- if .Values.configuration.rebootSignal }}
+            - --reboot-signal={{ .Values.configuration.rebootSignal }}
           {{- end }}
           {{- if .Values.configuration.slackChannel }}
             - --slack-channel={{ tpl .Values.configuration.slackChannel . }}
@@ -187,10 +197,17 @@ spec:
             - --{{ $key }}
             {{- end }}
           {{- end }}
-{{- if .Values.volumeMounts }}
+        {{- if or .Values.volumeMounts .Values.useRebootSentinelHostPath }}
           volumeMounts:
+        {{- end }}
+        {{- if .Values.useRebootSentinelHostPath }}
+          - mountPath: /sentinel
+            name: sentinel
+            readOnly: true
+        {{- end }}
+        {{- if .Values.volumeMounts }}
 {{- toYaml .Values.volumeMounts  | nindent 12 }}
-{{- end }}
+        {{- end }}
           ports:
             - containerPort: {{ .Values.configuration.metricsPort }}
               name: metrics
@@ -229,7 +246,15 @@ spec:
       affinity:
 {{ toYaml . | indent 8 }}
       {{- end }}
-{{- if .Values.volumes }}
+    {{- if or .Values.volumes .Values.useRebootSentinelHostPath }}
       volumes:
+    {{- end }}
+    {{- if .Values.useRebootSentinelHostPath }}
+        - name: sentinel
+          hostPath:
+            path: {{ dir .Values.configuration.rebootSentinel }}
+            type: Directory
+    {{- end }}
+    {{- if .Values.volumes }}
 {{- toYaml .Values.volumes  | nindent 8 }}
-{{- end }}
+    {{- end }}
