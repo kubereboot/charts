@@ -206,7 +206,7 @@ spec:
             readOnly: true
         {{- end }}
         {{- if .Values.volumeMounts }}
-{{- toYaml .Values.volumeMounts  | nindent 12 }}
+{{- toYaml .Values.volumeMounts  | nindent 10 }}
         {{- end }}
           ports:
             - containerPort: {{ .Values.configuration.metricsPort }}
