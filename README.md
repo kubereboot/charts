@@ -4,7 +4,7 @@
 
 ## Usage
 
-Add the repo:
+Add the repo (only needed if you want to use the classical approach without using the [OCI registry](https://helm.sh/docs/topics/registries/)):
 
 ```
 helm repo add kubereboot https://kubereboot.github.io/charts

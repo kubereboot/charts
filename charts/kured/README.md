@@ -5,12 +5,19 @@ This chart installs the "Kubernetes Reboot Daemon" using the Helm Package Manage
 
 ## Prerequisites
 - Kubernetes 1.9+
+- Helm 3.8.0+ (to pull the chart from the OCI registry)
 
 ## Installing the Chart
 To install the chart with the release name `my-release`:
 ```bash
 $ helm repo add kubereboot https://kubereboot.github.io/charts
 $ helm install my-release kubereboot/kured
+```
+
+You can also pull the helm chart from the OCI registry `ghcr.io`:
+
+```bash
+$ helm install my-release oci://ghcr.io/kubereboot/charts/kured
 ```
 
 ## Uninstalling the Chart
