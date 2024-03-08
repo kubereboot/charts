@@ -109,7 +109,7 @@ The following changes have been made compared to the stable chart:
 | `configuration.prometheusUrl`           | cli-parameter `--prometheus-url`                                            | `""`                      |
 | `configuration.rebootDays`              | Array of days for multiple cli-parameters `--reboot-days`                   | `[]`                      |
 | `configuration.rebootSentinel`          | cli-parameter `--reboot-sentinel`                                           | `""`                      |
-| `configuration.rebootSentinelCommand`   | cli-parameter `--reboot-sentinel-command`                                   | `""`                      |
+| `configuration.rebootSentinelCommand`   | Configure your own reboot command to run on the node host OS. Requires `configuration.useRebootSentinelHostPath` to be set to false. `--reboot-sentinel-command`                                   | `""`                      |
 | `configuration.rebootCommand`           | cli-parameter `--reboot-command`                                            | `""`                      |
 | `configuration.rebootDelay`             | cli-parameter `--reboot-delay`                                              | `""`                      |
 | `configuration.rebootMethod`            | cli-parameter `--reboot-method`                                             | `""`                      |
