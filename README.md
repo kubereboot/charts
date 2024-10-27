@@ -1,4 +1,6 @@
 # kubereboot charts
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubereboot%2Fcharts.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubereboot%2Fcharts?ref=badge_shield)
+
 
 [![](https://github.com/kubereboot/charts/workflows/Release%20Charts/badge.svg?branch=main)](https://github.com/kubereboot/charts/actions)
 
@@ -25,3 +27,7 @@ Please refer to the [Code of Conduct guidelines](https://github.com/kubereboot/k
 ## Security
 
 Please refer to the [Security process](https://github.com/kubereboot/kured/blob/main/README.md).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubereboot%2Fcharts.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubereboot%2Fcharts?ref=badge_large)
