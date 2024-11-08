@@ -2,6 +2,24 @@ apiVersion: v1
 entries:
   kured:
   - apiVersion: v1
+    appVersion: 1.16.2
+    created: "2024-11-08T08:53:39.269222687Z"
+    description: A Helm chart for kured
+    digest: f8acdcf1f3b21dcd85bbe3d04f91f80e5e7d3207c0503e6b473830aa88c6d730
+    home: https://github.com/kubereboot/kured
+    icon: https://raw.githubusercontent.com/kubereboot/website/main/static/img/kured.png
+    maintainers:
+    - email: christian.kotzbauer@gmail.com
+      name: chopf
+    - email: david@davidkarlsen.com
+      name: davidkarlsen
+    name: kured
+    sources:
+    - https://github.com/kubereboot/kured
+    urls:
+    - https://github.com/kubereboot/charts/releases/download/kured-5.5.2/kured-5.5.2.tgz
+    version: 5.5.2
+  - apiVersion: v1
     appVersion: 1.16.1
     created: "2024-11-01T18:57:13.349140085Z"
     description: A Helm chart for kured
@@ -1225,4 +1243,4 @@ entries:
     urls:
     - https://kubereboot.github.io/charts/kured-2.0.0.tgz
     version: 2.0.0
-generated: "2024-11-01T18:57:13.34942179Z"
+generated: "2024-11-08T08:53:39.26940713Z"
