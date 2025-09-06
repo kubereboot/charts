@@ -16,6 +16,29 @@ helm repo add kubereboot https://kubereboot.github.io/charts
 
 - [kured](https://github.com/kubereboot/charts/tree/main/charts/kured)
 
+### Overriding kured options with environment variables
+
+Kured supports overriding most configuration options using environment variables. The convention is:
+
+- The environment variable name is the CLI flag name, uppercased, with dashes replaced by underscores, and prefixed with `KURED_`.
+- For example:
+  - `slackHookUrl` → `KURED_SLACK_HOOK_URL`
+  - `notifyUrl` → `KURED_NOTIFY_URL`
+  - `rebootSentinel` → `KURED_REBOOT_SENTINEL`
+
+This is especially useful for injecting sensitive values (such as webhook URLs) from Kubernetes secrets. You can use the `extraEnvVars` section in `values.yaml` to add these environment variables, for example:
+
+```yaml
+extraEnvVars:
+  - name: KURED_NOTIFY_URL
+    valueFrom:
+      secretKeyRef:
+        name: my-secret
+        key: notify-url
+```
+
+See the Kured [Repository](https://github.com/kubereboot/kured) and [Documentation](https://kured.dev) for more details.
+
 ## Contributing
 
 Please refer to the [Kured Contribution guidelines](https://github.com/kubereboot/kured/blob/main/CONTRIBUTING.md).
