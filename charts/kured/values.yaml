@@ -157,3 +157,15 @@ volumeMounts: []
 volumes: []
 
 initContainers: {}
+
+extraObjects: # Extra manifests to add
+# - apiVersion: external-secrets.io/v1
+#   kind: ExternalSecret
+#   metadata:
+#     name: vault-secret
+#   spec:
+#     # ...
+#     dataFrom:
+#     - extract:
+#         key: /dev/config
+#         property: app.password
