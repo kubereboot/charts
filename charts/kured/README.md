@@ -30,6 +30,14 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Upgrade Notes
 
+### From 5.x to 6.x
+
+Service accounts annotations were put into `labels:` which means the users had to edit
+a few things to make annotations work on kured's service account name.
+
+Sadly, this is a breaking change: previous users of .Values.serviceAccount.extraAnnotations will have
+a change of behaviour. If you did not use this, you are not impacted.
+
 ### From 4.x to 5.x
 
 We improved two security-related default-values:
