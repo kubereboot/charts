@@ -149,6 +149,8 @@ tolerations: []
 
 affinity: {}
 
+topologySpreadConstraints: []
+
 nodeSelector:
   kubernetes.io/os: linux
 
